@@ -1,1 +1,96 @@
 # Contract
+
+## Overview
+
+The smart contract system consists of three main components that work together to provide liquid staking functionality:
+
+1. **StakeManager**: The core contract that manages staking operations and validator management
+2. **StakePool**: The intermediary contract that handles fund management and cross-chain operations
+3. **LsdToken**: The liquid staking derivative token contract
+
+## StakeManager
+
+The **StakeManager** contract is the central component that oversees all staking operations. It implements several key features:
+
+### Key Features
+- Manages validator sets and their operations
+- Handles staking rate calculations and updates
+- Distributes staking rewards and protocol fees
+- Manages era-based operations and updates
+- Controls stake pool operations
+
+### Core Functions
+- `stake()`: Allows users to stake tokens and receive LSD tokens in return
+- `unstake()`: Enables users to unstake their LSD tokens
+- `withdraw()`: Allows users to withdraw their unstaked tokens
+- `newEra()`: Updates the staking era and calculates new rates
+- `addValidator()`/`rmValidator()`: Manages validator sets
+- `startRedelegate()`: Handles validator redelegation
+
+### Security Features
+- Implements upgradeable proxy pattern (UUPS)
+- Uses role-based access control
+- Includes rate limiting and validation checks
+- Implements emergency functions for critical situations
+
+## StakePool
+
+The **StakePool** contract acts as an intermediary between stakers and the staking program, handling:
+
+### Key Features
+- Manages cross-chain operations
+- Handles delegation and undelegation of tokens
+- Tracks pending operations and balances
+- Implements settlement and redelegation processes
+
+### Core Functions
+- `delegate()`: Delegates tokens to validators
+- `undelegate()`: Undelegates tokens from validators
+- `startSettle()`: Initiates settlement process
+- `startRedelegate()`: Handles redelegation between validators
+- `withdrawForStaker()`: Processes withdrawals for stakers
+
+### State Management
+- Tracks total pending delegations and undelegations
+- Manages settlement and redelegation statuses
+- Maintains spot balance and delegation information
+- Handles cross-chain bridge operations
+
+## LsdToken
+
+The **LsdToken** contract represents the liquid staking derivative token with the following features:
+
+### Key Features
+- Implements ERC20 standard with burnable functionality
+- Tracks staked positions and rewards
+- Provides rate information for staking operations
+- Manages token minting and burning
+
+### Core Functions
+- `mint()`: Creates new LSD tokens (restricted to minter which is StakeManager)
+- `burn()`: Burns LSD tokens
+- `getRate()`: Provides current staking rate
+- `updateMinter()`: Updates the minter address
+
+### Integration
+- Integrates with StakeManager for rate information
+- Provides rate information to external protocols
+- Maintains token supply and balance tracking
+
+## Contract Interactions
+
+The contracts work together in the following way:
+
+1. Users interact with StakeManager to stake/unstake tokens
+2. StakeManager coordinates with StakePool for delegation operations
+3. StakePool handles cross-chain operations and validator interactions
+4. LsdToken represents the staked position and can be used in DeFi applications
+5. Era-based updates ensure proper rate calculations and reward distribution
+
+## Security Considerations
+
+- All contracts implement upgradeable patterns for future improvements
+- Strict access control is enforced through modifiers
+- Critical operations have validation checks and error handling
+- Cross-chain operations include safety checks and status tracking
+- Emergency functions are available for critical situations
