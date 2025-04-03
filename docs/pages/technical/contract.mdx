@@ -50,6 +50,14 @@ The **StakePool** contract acts as an intermediary between stakers and the staki
 - `startRedelegate()`: Handles redelegation between validators
 - `withdrawForStaker()`: Processes withdrawals for stakers
 
+### Cross-Chain Operations
+- `settle()`: Initiates the settlement process, moving through different states (Start, BridgedToL1, CDeposited, Delegated, Undelegated, Withdrawn, End)
+- `sendDeposit()`: Sends deposited tokens to the L1 chain
+- `sendDelegate()`: Sends delegation instructions to validators on L1
+- `sendWithdraw()`: Initiates withdrawal process from L1
+- `endSettle()`: Completes the settlement process after all operations are done
+- `sendL1ToEvm()`: Bridges tokens from L1 back to EVM chain
+
 ### State Management
 - Tracks total pending delegations and undelegations
 - Manages settlement and redelegation statuses
