@@ -71,8 +71,8 @@ export default defineConfig({
           link: '/guide/stake',
         },
         {
-          text: 'Liquid Staking Token(mHYPE)',
-          link: '/guide/mhype',
+          text: 'Liquid Staking Token(hHYPE)',
+          link: '/guide/hhype',
         },
       ],
     },

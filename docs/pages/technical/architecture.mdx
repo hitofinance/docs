@@ -1,6 +1,6 @@
 # Architecture
 
-Hito Finance's mHYPE Liquid Staking Derivatives (LSD) system is built on top of the EVM LSD Stack from StaFi's AI-powered LSaaS. The system enables users to stake their HYPE tokens and receive mHYPE tokens in return, which represent their staked position and rewards.
+Hito Finance's hHYPE Liquid Staking Derivatives (LSD) system is built on top of the EVM LSD Stack from StaFi's AI-powered LSaaS. The system enables users to stake their HYPE tokens and receive hHYPE tokens in return, which represent their staked position and rewards.
 
 ![](/images/HYPE-lsd-overview.png)
 
@@ -18,25 +18,25 @@ The User Application is the interface through which users interact with the Hito
 
 ## Stake Flow
 
-Users can stake their HYPE tokens through the `stake` method and receive equivalent mHYPE tokens in return. The amount of mHYPE tokens received is calculated based on the current rate:
+Users can stake their HYPE tokens through the `stake` method and receive equivalent hHYPE tokens in return. The amount of hHYPE tokens received is calculated based on the current rate:
 
 ```
-mHYPE Amount = Stake Amount * Total mHYPE / Escrow HYPE
+hHYPE Amount = Stake Amount * Total hHYPE / Escrow HYPE
 ```
 
 Where:
-- `mHYPE Amount` is the amount of mHYPE tokens being minted to the staker
+- `hHYPE Amount` is the amount of hHYPE tokens being minted to the staker
 - `Stake Amount` is the amount of HYPE tokens being staked
-- `Total mHYPE` is the total amount of mHYPE tokens minted and distributed to users
+- `Total hHYPE` is the total amount of hHYPE tokens minted and distributed to users
 - `Escrow HYPE` is the total amount of HYPE tokens staked and locked in the LSD system
 
 ![Stake Flow](/images/stake-flow.png)
 
 ## Unstake Flow
 
-mHYPE holders can call the `unstake` method to exchange their mHYPE tokens back for HYPE tokens. The process involves:
+hHYPE holders can call the `unstake` method to exchange their hHYPE tokens back for HYPE tokens. The process involves:
 
-1. Burning mHYPE tokens
+1. Burning hHYPE tokens
 2. Initiating undelegation process
 3. Waiting for the unbonding period
 4. Withdrawing HYPE tokens
@@ -56,18 +56,18 @@ Due to smart contract limitations, the system introduces a Relay service that:
 1. Triggers the StakeManager at regular intervals
 2. Collects and calculates user rewards
 3. Distributes rewards to the platform and users
-4. Updates the exchange rate between HYPE and mHYPE
+4. Updates the exchange rate between HYPE and hHYPE
 
 ![Relay Service](/images/relay-service.png)
 
 ## Rate Management
 
-The system maintains a dynamic exchange rate between HYPE and mHYPE tokens that:
+The system maintains a dynamic exchange rate between HYPE and hHYPE tokens that:
 
 1. Updates based on staking rewards
 2. Has rate change limits to prevent volatility
 3. Is tracked per era
-4. Affects the amount of mHYPE tokens minted/burned
+4. Affects the amount of hHYPE tokens minted/burned
 
 ## Era System
 
