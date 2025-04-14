@@ -1,1 +1,71 @@
-# MEV
+# Our Approach to Fair MEV Distribution for Enhanced LST Rewards
+
+## I. Introduction: Enhancing Your Rewards with Fair MEV
+
+This project is committed to delivering competitive and sustainable returns for our Liquid Staking Token (LST), mHYPE, holders. Beyond the standard staking rewards earned from providing liquidity to DeFi protocols or securing the underlying blockchain, we incorporate an additional source of yield: **Maximal Extractable Value (MEV)**.
+
+MEV represents the value that block producers can capture by influencing transaction order and inclusion. While often associated with practices detrimental to users, MEV is an inherent aspect of many blockchain systems. Our approach is to capture this value through carefully designed, **fair mechanisms** and distribute the resulting profits back to our mHYPE holders. This strategy turns a potential negative into a shared benefit, supplementing base staking yields and fostering a more equitable environment within our community.
+
+This document outlines our MEV strategy, covering:
+* A brief overview of MEV.
+* Our solution for fair MEV distribution to LST holders.
+* The technical implementation using Proposer-Builder Separation (PBS) adapted for hyperEVM.
+* How Trusted Execution Environments (TEEs) enhance trust and transparency.
+
+## II. Understanding Maximal Extractable Value (MEV)
+
+MEV refers to the potential profit block producers (validators in Proof-of-Stake systems like hyperEVM) can gain by strategically ordering or including transactions within the blocks they create. This value is extracted beyond standard block rewards and transaction fees.
+
+The ability to control transaction sequencing creates opportunities for MEV. While some strategies like arbitrage can contribute to market efficiency, others, such as "**sandwich attacks**," directly harm users by worsening their trade execution prices. MEV competition can also lead to higher network fees (gas costs) for everyone. Recognizing these dynamics, our system aims to manage MEV capture responsibly.
+
+## III. Our Solution: Fair MEV Distribution for LST Holders
+
+Our core innovation lies in integrating fair MEV distribution directly with our Liquid Staking Tokens, mHYPE.
+
+* **Synergy for Enhanced Yield:** Validators typically earn rewards from block validation (consensus) and transaction fees/MEV (execution). Our system is designed to actively capture MEV generated within the hyperEVM ecosystem. Crucially, this captured value is systematically distributed to our LST holders, creating a multi-layered yield stream combining base staking rewards with additional MEV profits. This approach mirrors progressive concepts seen in other ecosystems, adapted for hyperEVM.
+
+* **Commitment to Fairness:** We explicitly aim to avoid harmful MEV extraction methods like sandwich attacks that disadvantage users. Our focus is on capturing value arising from market efficiencies (e.g., benign arbitrage, back-running) and ensuring this value is shared equitably. By distributing these profits back to the mHYPE holders—whose staked capital helps secure the network—we create a fairer, more positive-sum dynamic compared to scenarios where MEV primarily benefits specialized actors. This alignment of incentives strengthens our protocol's long-term value proposition.
+
+## IV. Technical Implementation: Fair MEV Extraction on hyperEVM
+
+To implement fair MEV capture, we utilize a system inspired by Ethereum's **Proposer-Builder Separation (PBS)**, specifically adapted for the hyperEVM environment.
+
+* **Leveraging Proposer-Builder Separation (PBS):** PBS separates the roles of block *proposing* (selecting the next block, done by validators chosen via consensus) and block *building* (constructing the most profitable block content). Specialized "builders" compete to create optimized blocks and bid for their inclusion. The proposer simply selects the highest valid bid, earning the bid amount without needing complex MEV extraction capabilities themselves. This fosters specialization and can mitigate centralizing pressures.
+
+* **Adapting PBS for hyperEVM:** Our implementation tailors the PBS model to hyperEVM's unique features, such as its consensus mechanism (HyperBFT), dual-block architecture, and direct interaction with the native L1 order book (HyperCore). Builders in our system are equipped to handle these specifics, optimizing block construction for hyperEVM's distinct MEV landscape.
+
+* **Fair Extraction Mechanism Flow:**
+    1.  Users submit transactions.
+    2.  Specialized builders (and searchers) identify MEV opportunities, focusing on fair strategies.
+    3.  Builders construct optimized block payloads and submit them with a bid (representing shared MEV profit) to our system.
+    4.  The selected validator (proposer) chooses the highest valid bid.
+    5.  The corresponding block is proposed and added to the chain.
+    6.  The MEV value from the winning bid is routed to a reward contract for distribution to LST holders.
+
+This adapted PBS framework allows efficient MEV capture while embedding fairness principles into the process.
+
+## V. Ensuring Trust and Transparency: The Role of TEEs
+
+To enhance security and minimize trust assumptions in our MEV pipeline, we incorporate **Trusted Execution Environments (TEEs)**.
+
+* **Introducing TEEs:** TEEs are secure, hardware-isolated areas within a processor that protect code and data confidentiality and integrity. They can prove to remote parties (via "**attestation**") exactly what code is running inside them, untampered.
+
+* **Benefits of TEEs in Our System:**
+    * **Enhanced Security:** TEEs can protect critical parts of the PBS flow. For instance, builder software running in a TEE can process private transactions confidentially and its integrity can be verified. TEEs can also manage the block commit-reveal process securely, preventing MEV theft by either the builder or the proposer.
+    * **Increased Verifiability:** Remote attestation allows anyone to cryptographically verify that the builders and other components within our system are running the specific, audited software designed for fair MEV extraction and distribution. This provides strong evidence against hidden manipulations.
+    * **Improved Transparency:** While ensuring data confidentiality during processing, TEEs enable transparency of the *process rules*. By attesting to known, potentially open-source code, users gain confidence that the system operates according to fair principles, unlike opaque centralized systems.
+    * **Reduced Trust Reliance:** TEEs significantly reduce the need to blindly trust intermediaries (like traditional MEV-Boost relays) or even the project operators, shifting trust towards verifiable hardware and code execution.
+
+By strategically using TEEs, we aim to create an MEV distribution system for hyperEVM that is not only profitable for LST holders but also demonstrably secure, fair, and transparent.
+
+## VI. Conclusion: Secure, Fair, and Rewarding Staking
+
+Our project offers an advanced liquid staking solution on hyperEVM that combines standard staking rewards with an additional yield stream from fairly captured MEV. This is achieved through an adapted Proposer-Builder Separation system secured by Trusted Execution Environments.
+
+**User Benefits:**
+* **Enhanced Yield:** Potential for higher returns through combined staking and fair MEV rewards.
+* **Fairness:** Commitment to avoiding harmful MEV and distributing profits equitably.
+* **Trust & Security:** TEEs provide hardware-backed security and verifiable transparency.
+* **Liquidity:** Users retain the ability to use their LSTs in DeFi while earning rewards.
+
+We are committed to providing a secure, transparent, and highly rewarding staking experience that aligns protocol success with user benefits, building an innovative and equitable DeFi solution on hyperEVM.
