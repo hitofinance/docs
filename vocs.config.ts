@@ -36,7 +36,18 @@ export default defineConfig({
         },
         {
           text: 'Hito Finance',
+          collapsed: false,
           link: '/introduction/hitofinance',
+          items: [
+            {
+              text: 'Introduction',
+              link: '/introduction/hitofinance',
+            },
+            {
+              text: 'Liquid Staking Token(hHYPE)',
+              link: '/guide/hhype',
+            },
+          ],
         },
       ],
     },
@@ -69,10 +80,6 @@ export default defineConfig({
         {
           text: 'Stake Hype with Hito',
           link: '/guide/stake',
-        },
-        {
-          text: 'Liquid Staking Token(hHYPE)',
-          link: '/guide/hhype',
         },
       ],
     },
