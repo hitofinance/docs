@@ -9,7 +9,14 @@ import rehypeMathML from '@daiji256/rehype-mathml';
 
 export default defineConfig({
   title: 'Hito Finance',
+  iconUrl: '/icon.svg',
+  topNav: [
+    { text: 'Website', link: 'https://hitofinance.xyz' },
+    { text: 'Launch App', link: 'https://app.hitofinance.xyz' },
+    { text: 'AI LSaaS', link: 'https://stafi.io' },
+  ],
   description: 'Hito Finance is a premier liquid staking protocol on HyperEVM, powered by StaFi AI LSaaS and Maximum Extractable Value (MEV) strategies.',
+  ogImageUrl: 'https://vocs.dev/api/og?logo=%logo&title=%title&description=%description',
   socials: [
     {
       icon: 'github',
@@ -20,6 +27,11 @@ export default defineConfig({
       link: 'https://github.com/hitofinance',
     },
   ],
+
+  theme: {
+    accentColor: '#132F3F',
+  },
+
   markdown: {
     code: {
       themes: {
