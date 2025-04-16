@@ -16,6 +16,26 @@ The unstaking process consists of two distinct phases:
 
 Please note that rewards accumulation ceases upon initiation of the unstaking process.
 
+## Exchange Rate
+
+The hHYPE exchange rate($C_r$) is determined by a number of factors, including:
+
+- The total amount of HYPE staked in the Staking Contract: $Q_{tsk}$
+- The total amount of redeemed HYPE: $Q_{red}$
+- The amount of staking rewards: $Q_{rew}$
+- The commission ratio: $R_{com}$
+- The total amount of hHYPE minted: M
+- The total amount of hHYPE burned: N
+
+In general, the exchange rate is positively correlated with the staking income, which is influenced by these variables. The exact formula for calculating the hHYPE exchange rate is as follows:
+
+```math
+C_i = \frac{[(Q_{stk} - Q_{red}) + Q_{rew} \times (1 - R_{com})]}{(M - N)}
+```
+
+Since the protocol does not implement a slashing mechanism, the exchange rate can only increase as rewards accumulate. This means that later redeemers may receive a larger amount of HYPE upon redemption compared to earlier redeemers.
+
+
 ## Withdrawal Protocol
 
 The withdrawal mechanism operates according to the following principles:
