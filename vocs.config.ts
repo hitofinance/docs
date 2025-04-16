@@ -45,7 +45,7 @@ export default defineConfig({
             },
             {
               text: 'Liquid Staking Token(hHYPE)',
-              link: '/guide/hhype',
+              link: '/introduction/hhype',
             },
           ],
         },
