@@ -20,10 +20,10 @@ Please note that rewards accumulation ceases upon initiation of the unstaking pr
 
 The hHYPE exchange rate($C_r$) is determined by a number of factors, including:
 
-- The total amount of HYPE staked in the Staking Contract: $Q_{tsk}$
-- The total amount of redeemed HYPE: $Q_{red}$
-- The amount of staking rewards: $Q_{rew}$
-- The commission ratio: $R_{com}$
+- The total amount of HYPE staked in the Staking Contract: ```Q_{tsk}```
+- The total amount of redeemed HYPE: ```Q_{red}```
+- The amount of staking rewards: ```Q_{rew}```
+- The commission ratio: ```R_{com}```
 - The total amount of hHYPE minted: M
 - The total amount of hHYPE burned: N
 
@@ -72,10 +72,3 @@ The protocol's yield generation mechanism is influenced by several key factors:
 * Market dynamics
 
 Token holders may monitor their staking performance and the protocol's annual percentage yield (APY) through the integrated dashboard interface.
-
-## Exchange Rate
-
-
-```math
-C_{i}={[\left(Q_{stk}-Q_{red}\right)+Q_{rew} *\left(1-R_{com}\right)]}/{(M-N)}
-```
