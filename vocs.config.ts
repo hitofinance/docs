@@ -1,5 +1,6 @@
 import { defineConfig } from 'vocs'
-import remarkMath from 'remark-math'
+import rehypeMathjax from 'rehype-mathjax'
+
 
 export default defineConfig({
   title: 'Hito Finance',
@@ -20,8 +21,8 @@ export default defineConfig({
         light: 'github-light',
         dark: 'github-dark'
       }
-    }, remarkPlugins: [
-      remarkMath
+    }, rehypePlugins: [
+      rehypeMathjax
     ]
   },
 
