@@ -9,11 +9,15 @@
     "preview": "vocs preview"
   },
   "dependencies": {
+    "@daiji256/rehype-mathml": "^1.2.0",
     "react": "latest",
     "react-dom": "latest",
     "rehype-katex": "^7.0.1",
-    "rehype-mathjax": "^7.1.0",
+    "rehype-stringify": "^10.0.1",
     "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5",
     "vocs": "^1.0.11"
   },
   "devDependencies": {

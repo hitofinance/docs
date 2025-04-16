@@ -1,5 +1,10 @@
 import { defineConfig } from 'vocs'
-import rehypeMathjax from 'rehype-mathjax'
+import remarkMath from 'remark-math'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
+import rehypeMathML from '@daiji256/rehype-mathml';
+
 
 
 export default defineConfig({
@@ -21,9 +26,11 @@ export default defineConfig({
         light: 'github-light',
         dark: 'github-dark'
       }
-    }, rehypePlugins: [
-      rehypeMathjax
-    ]
+    }, remarkPlugins: [
+      remarkMath, remarkParse, remarkRehype
+    ], rehypePlugins: [
+      rehypeMathML, rehypeStringify
+    ],
   },
 
   sidebar: [
